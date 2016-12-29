@@ -6,6 +6,7 @@ Back-end for food inventory / suggestions.
 
 ## Installation
 1. https://www.meteor.com/install
+	* Feel free to skip creating a meteor account
 2. Clone this project into the directory where you want to run it.
 3. Navigate to the directory that was just created.
 4. Run ' meteor npm install'
