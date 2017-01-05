@@ -1,0 +1,16 @@
+<template name="ingredients">
+  <div id="ingredient_view">
+    <h1>Ingredients</h1>
+    <form class="new_ingredient">
+      <input type="text" name="text" placeholder="Type to add a new ingredient" />
+      <input type="submit" value="Add">
+    </form>
+    {{#each ingredient_list}}
+      {{> ingredient_entry}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="ingredient_entry">
+  <p>{{text}}</p>
+</template>
