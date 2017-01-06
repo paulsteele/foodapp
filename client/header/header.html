@@ -9,5 +9,16 @@
 	    	{{> user_login_header}}
 	    {{/if}}
 	</div>
+	{{#if errorValue}}
+	   	{{> errorHandler}}
+	{{/if}}
 	
+</template>
+
+<template name="errorHandler">
+	<div id="errorBar">
+		<p>{{errorValue}}</p>
+		<p id="errorDismiss">x</p>
+	</div>
+
 </template>

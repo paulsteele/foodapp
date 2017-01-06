@@ -10,3 +10,15 @@ div#header h1{
 	text-align: center;
 	top: -15px;
 }
+
+div#errorBar {
+	background-color: #00AA00;
+	margin-top: -16px;
+	text-align: center;
+}
+
+div#errorBar p#errorDismiss {
+	float: right;
+	margin-top: -36px;
+	margin-right: 5px;
+}

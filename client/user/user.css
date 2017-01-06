@@ -16,3 +16,38 @@ div.topbar:hover {
 div.topbar:active {
 	background-color: #009900;
 }
+
+div.account_form{
+	margin-top: 50px;
+	width: 50%;
+	min-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: #00BB00;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+div.account_form form div.col1{
+	float:left;
+	width: 155px;
+	margin-top:4px;
+	text-align: left;
+}
+
+div.account_form form div.col1small{
+	width: 90px;
+}
+
+div.account_form form div.col2 {
+	overflow:hidden;
+}
+
+div.account_form form div.col2 input{
+	width: 100%;
+}
+
+div.account_form form input.acc_special {
+	font-size: 1.5em;
+}
