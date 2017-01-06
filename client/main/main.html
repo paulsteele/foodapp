@@ -7,7 +7,12 @@
   {{#if userID}}
     {{> ingredients}}
   {{else}}
-    
+    {{#if contextCheck 'login'}}
+      {{> user_login}}
+    {{/if}}
+    {{#if contextCheck 'signup'}}
+      {{> user_create}}
+    {{/if}}
   {{/if}}
   
   <p>user - {{userID}}</p>
