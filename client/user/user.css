@@ -1,0 +1,18 @@
+div.topbar {
+	position: relative;
+	display: inline-block;
+	height: 50px;
+	float:right;
+	top: -82px;
+	padding-left: 5px;
+	padding-right:5px;
+	color: #FFFFFF;
+}
+
+div.topbar:hover {
+	background-color: #00AA00;
+}
+
+div.topbar:active {
+	background-color: #009900;
+}

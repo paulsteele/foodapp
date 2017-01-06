@@ -1,5 +1,13 @@
 <template name="header">
 	<div id="header">
 		<h1>FoodApp</h1>
+		{{#if userID}}
+			{{> user_logout}}
+		{{else}}
+			{{> user_create}}
+			
+	    	{{> user_login}}
+	    {{/if}}
 	</div>
+	
 </template>

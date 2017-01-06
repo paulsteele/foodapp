@@ -4,7 +4,13 @@
 
 <body>
   {{> header}}
-  {{> ingredients}}
+  {{#if userID}}
+    {{> ingredients}}
+  {{else}}
+    
+  {{/if}}
+  
+  <p>user - {{userID}}</p>
 </body>
 
 <template name="hello">
