@@ -4,6 +4,10 @@ import './ingredient.html';
 
 import { Ingredients } from '../../imports/data/ingredients.js'
 
+Template.ingredients.onCreated(function ingreidentsOnCreated(){
+	Meteor.subscribe('ingredients');
+});
+
 Template.ingredients.helpers({
 	ingredient_list() {
 		return Ingredients.find({});
@@ -17,10 +21,12 @@ Template.ingredients.events({
 	//Grab the values
     const target = event.target;
 	const text = target.text.value;
+	const count = target.count.value;
 	//do actual insertion into mongo
-	Ingredients.insert({
-		text,
-		createdAt: new Date()
+	Meteor.call('ingredients.insert', text, parseInt(count), function(err){
+		if (err){
+			Session.set('errorMessage', err.reason);
+		}
 	});
 	
 	//clear form value

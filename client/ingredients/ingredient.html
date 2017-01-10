@@ -3,6 +3,7 @@
     <h1>Ingredients</h1>
     <form class="new_ingredient">
       <input type="text" name="text" placeholder="Type to add a new ingredient" />
+      <input type="number" name="count" value="1" min="1"/>
       <input type="submit" value="Add">
     </form>
     {{#each ingredient_list}}
