@@ -6,12 +6,18 @@
       <input type="number" name="count" value="1" min="1"/>
       <input type="submit" value="Add">
     </form>
+    <table>
     {{#each ingredient_list}}
       {{> ingredient_entry}}
     {{/each}}
+    </table>
   </div>
 </template>
 
 <template name="ingredient_entry">
-  <p>{{text}}</p>
+  <tr>
+    <td>{{text}}</td>
+    <td><input type="number" class="count" min="0" value="{{quantity}}"></td>
+    <td><input type="button" class="delete" value="remove"></td>
+  </tr>
 </template>

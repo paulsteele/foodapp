@@ -21,6 +21,13 @@ Meteor.methods({
 			throw new Meteor.Error('not-authorized');
 		}
 
+		if (Ingredients.findOne({text: text, owner: this.userId}) != undefined){
+			err = new Meteor.Error('already-exists');
+			err.reason= "The ingredient already exists";
+			throw err;
+			return;
+		}
+
 		Ingredients.insert({
 			text,
 			owner: this.userId,

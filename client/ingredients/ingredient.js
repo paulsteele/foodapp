@@ -32,4 +32,26 @@ Template.ingredients.events({
 	//clear form value
 	target.text.value = '';
 	},
+
+	'change .count'(event){
+		const target = event.target;
+		const count = target.value;
+		Meteor.call('ingredients.setCount', this._id, parseInt(count), function(err){
+			if (err){
+				Session.set('errorMessage', err.reason);
+			}
+		});
+	},
+
+	'click .delete'(event){
+		conf = confirm("Are you sure you want to remove this ingredient?");
+		if (conf){
+			Meteor.call('ingredients.remove', this._id, function(err){
+			if (err){
+				Session.set('errorMessage', err.reason);
+			}
+		});
+		}
+	}
+
 });
