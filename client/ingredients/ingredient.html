@@ -20,4 +20,9 @@
     <td><input type="number" class="count" min="0" value="{{quantity}}"></td>
     <td><input type="button" class="delete" value="remove"></td>
   </tr>
+  {{> Template.dynamic template=(getDisplay _id)}}
+</template>
+
+<template name="ingredient_confirm_bar">
+  <p>Are you sure you want to remove this ingredient?</p>
 </template>

@@ -11,7 +11,21 @@ Template.ingredients.onCreated(function ingreidentsOnCreated(){
 Template.ingredients.helpers({
 	ingredient_list() {
 		return Ingredients.find({});
-	}
+	},
+});
+
+Template.ingredient_entry.helpers({
+	getDisplay(data) {
+		console.log(data);
+		Meteor.call('ingredients.checkDeleteList', data, function(err, result){
+			if (err){
+
+			}
+			else{
+				return "ingredient_confirm_bar";
+			}
+		});
+	},
 });
 
 Template.ingredients.events({
@@ -44,14 +58,14 @@ Template.ingredients.events({
 	},
 
 	'click .delete'(event){
-		conf = confirm("Are you sure you want to remove this ingredient?");
-		if (conf){
+		//conf = confirm("Are you sure you want to remove this ingredient?");
+		/*if (conf){
 			Meteor.call('ingredients.remove', this._id, function(err){
 			if (err){
 				Session.set('errorMessage', err.reason);
 			}
 		});
-		}
+		}*/
 	}
 
 });

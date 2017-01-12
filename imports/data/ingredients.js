@@ -1,6 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import {check} from 'meteor/check';
+import { Session } from 'meteor/session';
 
 export const Ingredients = new Mongo.Collection('ingredients');
 
@@ -48,4 +49,16 @@ Meteor.methods({
 
 		Ingredients.update(ingredientId, { $set: { quantity: count}});
 	},
+
+	'ingredients.checkDeleteList'(entry){
+		return (Session.get(entry) != null);
+	},
+
+	'ingredients.addDeleteList'(entry){
+		Session.set(entry, true);
+	},
+
+	'ingredient.delDeleteList'(entry){
+		delete Session.keys[entry];
+	}
 });
