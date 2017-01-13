@@ -15,14 +15,27 @@
 </template>
 
 <template name="ingredient_entry">
+  <div class = "tableholder">
   <tr>
     <td>{{text}}</td>
     <td><input type="number" class="count" min="0" value="{{quantity}}"></td>
     <td><input type="button" class="delete" value="remove"></td>
   </tr>
-  {{> Template.dynamic template=(getDisplay _id)}}
-</template>
+  {{#if check_show_remove}}
+    <tr>
+      <td>Are you sure?</td>
+      <td><input type="button" class="delete_confirm" value="yes"></td>
+      <td><input type="button" class="delete_deny" value="cancel"></td>
+    </tr>
+  {{else}}
+    {{#if check_show_update}}
+      <tr>
+        <td></td>
+        <td><input type="button" class="update_confirm" value="update"></td>
+        <td><input type="button" class="update_deny" value="revert"></td>
+      </tr>
+    {{/if}}
+  {{/if}}
+  </div>
 
-<template name="ingredient_confirm_bar">
-  <p>Are you sure you want to remove this ingredient?</p>
 </template>

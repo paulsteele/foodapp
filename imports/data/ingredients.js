@@ -49,16 +49,4 @@ Meteor.methods({
 
 		Ingredients.update(ingredientId, { $set: { quantity: count}});
 	},
-
-	'ingredients.checkDeleteList'(entry){
-		return (Session.get(entry) != null);
-	},
-
-	'ingredients.addDeleteList'(entry){
-		Session.set(entry, true);
-	},
-
-	'ingredient.delDeleteList'(entry){
-		delete Session.keys[entry];
-	}
 });
