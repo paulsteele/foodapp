@@ -2,40 +2,53 @@
   <div id="ingredient_view">
     <h1>Ingredients</h1>
     <form class="new_ingredient">
-      <input type="text" name="text" placeholder="Type to add a new ingredient" />
-      <input type="number" name="count" value="1" min="1"/>
-      <input type="submit" value="Add">
+      <div class="icol3">
+        <input type="submit" value="Add">
+      </div>
+      <div class="icol2">
+        <input type="number" class= "count" name="count" value="1" min="1"/>
+      </div>
+      <div class="icol1">
+        <input type="text" name="text" placeholder="Type to add a new ingredient" />
+      </div>
+      
+      
     </form>
-    <table>
     {{#each ingredient_list}}
       {{> ingredient_entry}}
     {{/each}}
-    </table>
   </div>
 </template>
 
 <template name="ingredient_entry">
   <div class = "tableholder">
-  <tr>
-    <td>{{text}}</td>
-    <td><input type="number" class="count" min="0" value="{{quantity}}"></td>
-    <td><input type="button" class="delete" value="remove"></td>
-  </tr>
-  {{#if check_show_remove}}
-    <tr>
-      <td>Are you sure?</td>
-      <td><input type="button" class="delete_confirm" value="yes"></td>
-      <td><input type="button" class="delete_deny" value="cancel"></td>
-    </tr>
-  {{else}}
-    {{#if check_show_update}}
-      <tr>
-        <td></td>
-        <td><input type="button" class="update_confirm" value="update"></td>
-        <td><input type="button" class="update_deny" value="revert"></td>
-      </tr>
-    {{/if}}
+    <div class="icol3">
+      <input type="button" class="delete" value="Remove">
+    </div>
+    <div class="icol2">
+      <input type="number" class="count" min="0" value="{{quantity}}">
+    </div>
+    <div class="icol1">
+      <input type="text" name="entry" value={{text}} readonly="readonly">
+    </div>
+  {{#if check_show_update}}
+    <div class="icol25">
+      <input type="button" class="update_deny" value="Revert">
+    </div>
+    <div class="icol15">
+      <input type="button" class="update_confirm" value="Update">
+    </div>
   {{/if}}
+  {{#if check_show_remove}}
+    <div class="icol25">
+      <input type="button" class="delete_deny" value="Cancel Remove">
+    </div>
+    <div class="icol15">
+      <input type="button" class="delete_confirm" value="Confirm remove">
+    </div>
+  {{/if}} 
+
+  
   </div>
 
 </template>

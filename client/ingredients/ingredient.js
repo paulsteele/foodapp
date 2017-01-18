@@ -83,7 +83,7 @@ Template.ingredient_entry.events({
 	'click .update_confirm' : function(event, template){ 
 		//this is really stupid looking but essentially walks down the template children to find
 		//the numberbox
-		const count = $(event.target).parent().parent().parent()[0].children[0].cells[1].children[0].value;
+		const count = $(event.target).parent().parent()[0].children[1].children[0].value;
 
 		Meteor.call('ingredients.setCount', this._id, parseInt(count), function(err){
 			if (err){
@@ -95,7 +95,7 @@ Template.ingredient_entry.events({
 	},
 
 	'click .update_deny' : function(event, template){
-		$(event.target).parent().parent().parent()[0].children[0].cells[1].children[0].value = this.quantity;
+		$(event.target).parent().parent()[0].children[1].children[0].value = this.quantity;
 		template.show_update.set(false);
 	}
 });

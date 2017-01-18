@@ -15,3 +15,48 @@ div#ingredient_view h1 {
 	text-align: center;
 	font-size: 1.3em;
 }
+
+div#ingredient_view div.icol1{
+	overflow:hidden;
+}
+
+div#ingredient_view div.icol1 input {
+	width: 100%;
+	font-size: 1.2em;
+}
+
+div#ingredient_view div.icol2 {
+	float:right;
+	width: 50px;
+}
+
+div#ingredient_view div.icol2 input {
+	width: 100%;
+	font-size: 1.2em;
+}
+
+div#ingredient_view div.icol3 {
+	float:right;
+	width: 85px;
+}
+
+div#ingredient_view div.icol3 input{
+	width: 100%;
+	font-size: 1.2em;
+}
+
+div#ingredient_view div.icol25{
+	float:right;
+	width: 50%;
+}
+div#ingredient_view div.icol25 input{
+	width: 100%;
+	font-size: 1.2em
+}
+div#ingredient_view div.icol15{
+	overflow:hidden;
+}
+div#ingredient_view div.icol15 input {
+	width: 100%;
+	font-size: 1.2em
+}
