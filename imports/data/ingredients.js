@@ -9,7 +9,7 @@ if (Meteor.isServer){
 	Meteor.publish('ingredients', function ingredientsPublication() {
 		return Ingredients.find({
 			owner: this.userId,
-		});
+		}, {sort: {text: 1}});
 	});
 }
 
@@ -30,7 +30,7 @@ Meteor.methods({
 		}
 
 		Ingredients.insert({
-			text,
+			text: text.toLowerCase(),
 			owner: this.userId,
 			quantity: count,
 			createdAt: new Date()
