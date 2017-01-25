@@ -6,6 +6,7 @@
   {{> header}}
   {{#if userID}}
     {{> ingredients}}
+    {{> recipes}}
   {{else}}
     {{#if contextCheck 'login'}}
       {{> user_login}}

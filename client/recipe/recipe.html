@@ -1,0 +1,32 @@
+<template name="recipes">
+	<div id="recipe_view">
+		<h1>Recipes</h1>
+		<div id="recipe_bar">
+			<input type="button" class="sort_recipes" value="Sort">
+			<input type="button" class="new_recipe" value="New">
+			
+		</div>
+		{{#if check_show_new_recipe}}
+			{{> new_recipe}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="new_recipe">
+	<div class="recipe_row">
+		<div class="icol1">
+      		<p>Name:</p>
+    	</div>
+		<div class="icol2">
+      		<input type="text" class="name" placeholder="Enter recipe title">
+    	</div>
+    </div>
+    <div class="recipe_row">
+    	<div class="icol1">
+      		<p>Name:</p>
+    	</div>
+    	<div class="icol2">
+      		<input type="text" class="name" placeholder="Enter recipe title">
+    	</div>
+	</div>
+</template>

@@ -23,8 +23,11 @@ div.tableholder{
 }
 
 div#ingredient_view {
-	width: 50%;
+	width: 48.5%;
+	margin-left: 1%;
+	margin-top: 1%;
 	background-color: #60D060;
+	float: left;
 }
 
 div#ingredient_view input{
