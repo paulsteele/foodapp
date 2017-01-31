@@ -28,6 +28,9 @@
     	<div class="icol15r">
     		<input type="button" class="button" value="Add" id="addingredient">
     	</div>
+    	<div class="icol15r">
+    		<input type="button" class="button" value="Remove" id="removeigredient">
+    	</div>
     </div>
     {{#each (for get_ingredients_count)}}
       {{> recipe_ingredient}}
@@ -45,9 +48,6 @@
 <template name="recipe_ingredient">
 	<div class="recipe_row">
 		<div class="icol3">
-			<input type="button" value="Remove" class="button" id="removeigredient">
-		</div>
-		<div class="icol2">
 			<input type="number" class="count" min="1" value="1">
 		</div>
 		<div class="icol1">

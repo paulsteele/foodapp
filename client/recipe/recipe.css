@@ -39,3 +39,11 @@ div.recipe_row p {
 	height: 28px;
 	margin-top: 7px;
 }
+
+div.recipe_row div.icol3 {
+	width:55px;
+}
+
+#removeigredient {
+	width: 85px;
+}

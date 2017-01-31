@@ -40,4 +40,8 @@ Template.new_recipe.events({
 	'click #addingredient': function(event, template){
 		template.ingredients_count.set(template.ingredients_count.get() + 1);
 	},
+
+	'click #removeigredient' : function(event, template){
+		template.ingredients_count.set(template.ingredients_count.get() - 1);
+	}
 });
