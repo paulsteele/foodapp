@@ -13,6 +13,16 @@ div#recipe_view h1 {
 	font-size: 1.3em;
 }
 
+div#recipe_view input {
+	border-width: 2px;
+	margin-top: 3px;
+	height: 24px;
+}
+
+div#recipe_view input.button {
+	height: 28px;
+}
+
 div #recipe_bar{
 	width: 100%;
 	height: 31px
@@ -48,6 +58,16 @@ div.recipe_row p {
 div.recipe_row div.icol1{
 	float:left ;
 	padding-right: 5px;
+}
+
+div.recipe_row div.icol15{
+	float: left;
+	padding-right: 5px;
+}
+
+div.recipe_row div.icol15 input{
+	font-size: 1.2em;
+	margin-top: 3px;
 }
 
 div.recipe_row div.icol2{
