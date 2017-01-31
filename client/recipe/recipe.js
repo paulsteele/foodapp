@@ -21,7 +21,7 @@ Template.recipes.helpers({
 });
 
 Template.recipes.events({
-	'click .new_recipe': function(event, template){
+	'click #new_recipe': function(event, template){
 		template.show_new_recipe.set(true);
 	},
 });

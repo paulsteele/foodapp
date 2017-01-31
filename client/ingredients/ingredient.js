@@ -64,7 +64,7 @@ Template.ingredient_entry.events({
 		
 	},
 
-	'click .delete': function(event, template){
+	'click #delete': function(event, template){
 		template.show_remove.set(true);
 	},
 

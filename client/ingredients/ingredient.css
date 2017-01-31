@@ -30,35 +30,11 @@ div#ingredient_view {
 	float: left;
 }
 
-div#ingredient_view input{
-	padding: 0px;
-	margin: 0px;
-	border-width: 2px;
-	margin-top: 3px;
-	height: 24px;
-}
-
 div#ingredient_view h1 {
 	position: relative;
 	text-align: center;
 	font-size: 1.3em;
 }
-
-div#ingredient_view div.icol3 input {
-	height: 28px;
-}
-
-div#ingredient_view div.icol1{
-	overflow:hidden;
-	padding-right: 5px;
-}
-
-div#ingredient_view div.icol1 input {
-	width: 100%;
-	font-size: 1.2em;
-}
-
-
 
 div#ingredient_view div.icol1 p {
 	width: 100%;
@@ -69,45 +45,4 @@ div#ingredient_view div.icol1 p {
 	height: 28px;
 	white-space: nowrap;
   	overflow: hidden;
-}
-
-div#ingredient_view div.icol2 {
-	float:right;
-	width: 50px;
-	
-}
-
-div#ingredient_view div.icol2 input {
-	width: 90%;
-	font-size: 1.2em;
-}
-
-div#ingredient_view div.icol3 {
-	float:right;
-	width: 85px;
-}
-
-div#ingredient_view div.icol3 input{
-	width: 100%;
-	font-size: 1.2em;
-}
-
-div#ingredient_view div.icol25{
-	float:right;
-	width: 50%;
-}
-div#ingredient_view div.icol25 input{
-	width: 100%;
-	font-size: 1.2em;
-	margin-top: 1px;
-	margin-left: 1px;
-}
-div#ingredient_view div.icol15{
-	overflow:hidden;
-}
-div#ingredient_view div.icol15 input {
-	width: 100%;
-	font-size: 1.2em;
-	margin-top: 1px;
-	margin-right: 1px;
 }

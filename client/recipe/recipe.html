@@ -2,8 +2,8 @@
 	<div id="recipe_view">
 		<h1>Recipes</h1>
 		<div id="recipe_bar">
-			<input type="button" class="sort_recipes" value="Sort">
-			<input type="button" class="new_recipe" value="New">
+			<input type="button" class="button" id="sort_recipes" value="Sort">
+			<input type="button" class="button" id="new_recipe" value="New">
 			
 		</div>
 		{{#if check_show_new_recipe}}
@@ -44,14 +44,16 @@
 
 <template name="recipe_ingredient">
 	<div class="recipe_row">
-		<div class="icol1r">
-			<input type="text" class="ingredient" placeholder="Enter ingredient">
-		</div>
-		<div class="icol15r">
-			<input type="number" class="count" min="1" value="1">
-		</div>
-		<div class="icol2r">
+		<div class="icol3">
 			<input type="button" value="Remove" class="button" id="removeigredient">
 		</div>
+		<div class="icol2">
+			<input type="number" class="count" min="1" value="1">
+		</div>
+		<div class="icol1">
+			<input type="text" class="ingredient" placeholder="Enter ingredient">
+		</div>
+		
+		
 	</div>
 </template>
