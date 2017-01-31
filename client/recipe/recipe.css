@@ -16,7 +16,11 @@ div#recipe_view h1 {
 div#recipe_view input {
 	border-width: 2px;
 	margin-top: 3px;
-	height: 24px;
+	font-size: 1.2em;
+}
+
+div#recipe_view input.count {
+	width: 50px;
 }
 
 div#recipe_view input.button {
@@ -55,27 +59,27 @@ div.recipe_row p {
 	margin-top: 7px;
 }
 
-div.recipe_row div.icol1{
+div.recipe_row div.icol1r{
 	float:left ;
 	padding-right: 5px;
 }
 
-div.recipe_row div.icol15{
+div.recipe_row div.icol15r{
 	float: left;
 	padding-right: 5px;
 }
 
-div.recipe_row div.icol15 input{
+div.recipe_row div.icol15r input{
 	font-size: 1.2em;
 	margin-top: 3px;
 }
 
-div.recipe_row div.icol2{
+div.recipe_row div.icol2r{
 	overflow:hidden;
 	padding-right: 5px;
 }
 
-div.recipe_row div.icol2 input {
+div.recipe_row div.icol2r input {
 	width: 100%;
 	font-size: 1.2em;
 	margin-top: 3px;
