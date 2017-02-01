@@ -32,6 +32,10 @@ div.recipe_row {
 	padding-left: 5px;
 }
 
+div.rows2 {
+	height: 70px;
+}
+
 div.recipe_row p {
 	font-size: 1.2em;
 	margin: 0px;
@@ -45,5 +49,13 @@ div.recipe_row div.icol3 {
 }
 
 #removeigredient {
+	width: 85px;
+}
+
+#removeinstruction{
+	width: 85px;
+}
+
+#discard_recipe{
 	width: 85px;
 }

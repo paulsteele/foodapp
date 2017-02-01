@@ -89,3 +89,10 @@ div.icol2r input {
 	font-size: 1.2em;
 	margin-top: 3px;
 }
+
+div.icol1 textarea{
+	width: 99.7%;
+	font-size: 1.2em;
+	resize: none;
+	margin-top: 5px;
+}

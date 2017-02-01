@@ -40,9 +40,33 @@
       		<p>Cooking Time:</p>
     	</div>
     	<div class="icol2r">
-      		<input type="text" class="name" placeholder="Enter cooking time">
+      		<input type="number" min="1" class="counttime" placeholder="Enter cooking time">
     	</div>
 	</div>
+	<div class="recipe_row">
+    	<div class="icol1r">
+    		<p>Instructions</p>
+    	</div>
+    	<div class="icol15r">
+    		<input type="button" class="button" value="Add" id="addinstruction">
+    	</div>
+    	<div class="icol15r">
+    		<input type="button" class="button" value="Remove" id="removeinstruction">
+    	</div>
+    </div>
+    {{#each (for get_instructions_count)}}
+      {{> recipe_instruction}}
+    {{/each}}
+    <div class="recipe_row">
+    	
+    	<div id="recipe_bar">
+    		<input type="button" class="button" value="Discard" id="discard_recipe">
+			<input type="button" class="button" value="Save" id="save_recipe">
+    	
+    		
+		</div>
+
+    </div>
 </template>
 
 <template name="recipe_ingredient">
@@ -53,7 +77,13 @@
 		<div class="icol1">
 			<input type="text" class="ingredient" placeholder="Enter ingredient">
 		</div>
-		
-		
+	</div>
+</template>
+
+<template name="recipe_instruction">
+	<div class="recipe_row rows2">
+		<div class="icol1">
+			<textarea rows="3" placeholder="Enter Instruction"></textarea>
+		</div>
 	</div>
 </template>

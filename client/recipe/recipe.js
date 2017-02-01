@@ -1,12 +1,13 @@
 import { Template } from 'meteor/templating';
-import { Ingredients } from '../../imports/data/ingredients.js'
+import { Recipes } from '../../imports/data/recipes.js';
+import { recipe } from '../../imports/data/recipes.js';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './recipe.html';
 import '../../imports/functions/times.js'
 
 Template.recipes.onCreated(function ingreidentsOnCreated(){
-	Meteor.subscribe('ingredients');
+	Meteor.subscribe('recipes');
 });
 
 Template.recipes.onCreated(function ingredient_entryOnCreated(){
@@ -24,16 +25,35 @@ Template.recipes.events({
 	'click #new_recipe': function(event, template){
 		template.show_new_recipe.set(true);
 	},
+
+	'click #discard_recipe' : function(event, template){
+		template.show_new_recipe.set(false);
+	},
+
+	'click #save_recipe' : function(event, template){
+		var newrecipe = new recipe("hbvi", ["dhdf", "dfd"], 180, ["lolwut"]);
+
+		Meteor.call('recipes.insert', newrecipe, function(err){
+		if (err){
+			Session.set('errorMessage', err.reason);
+		}
+	});
+	}
 });
 
 Template.new_recipe.onCreated(function newrecipe_OnCreated(){
  	this.ingredients_count = new ReactiveVar(1);
+ 	this.instructions_count = new ReactiveVar(1);
 });
 
 Template.new_recipe.helpers({
 	get_ingredients_count(){
 		return Template.instance().ingredients_count.get();
-	}
+	},
+
+	get_instructions_count(){
+		return Template.instance().instructions_count.get();
+	},
 });
 
 Template.new_recipe.events({
@@ -42,6 +62,21 @@ Template.new_recipe.events({
 	},
 
 	'click #removeigredient' : function(event, template){
-		template.ingredients_count.set(template.ingredients_count.get() - 1);
-	}
+		value = template.ingredients_count.get() - 1;
+		if (value < 0){
+			value = 0;
+		}
+		template.ingredients_count.set(value);
+	},
+	'click #addinstruction': function(event, template){
+		template.instructions_count.set(template.instructions_count.get() + 1);
+	},
+
+	'click #removeinstruction' : function(event, template){
+		value = template.instructions_count.get() - 1;
+		if (value < 0){
+			value = 0;
+		}
+		template.instructions_count.set(value);
+	},
 });
