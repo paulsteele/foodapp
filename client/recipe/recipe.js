@@ -30,7 +30,17 @@ Template.recipes.events({
 		template.show_new_recipe.set(false);
 	},
 
-	'click #save_recipe' : function(event, template){
+	'submit .recipe_new' : function(event, template){
+		
+		event.preventDefault();
+		const target = event.target;
+		const recname = target.recname;
+		const ingred = target.rec_ingred;
+		const ingred_count = target.rec_ingred_count;
+		const time = target.rec_time;
+		const instruc = target.rec_instruc;
+		console.log(instruc);
+
 		var newrecipe = new recipe("hbvi", ["dhdf", "dfd"], 180, ["lolwut"]);
 
 		Meteor.call('recipes.insert', newrecipe, function(err){

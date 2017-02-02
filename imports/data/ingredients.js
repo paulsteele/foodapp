@@ -10,9 +10,8 @@ if (Meteor.isServer){
 			owner: this.userId,
 		}, {sort: {text: 1}});
 	});
-}
 
-Meteor.methods({
+	Meteor.methods({
 	'ingredients.insert'(text, count){
 		check(text, String);
 		check(count, Number);
@@ -49,3 +48,6 @@ Meteor.methods({
 		Ingredients.update(ingredientId, { $set: { quantity: count}});
 	},
 });
+	
+}
+

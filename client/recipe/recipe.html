@@ -13,12 +13,13 @@
 </template>
 
 <template name="new_recipe">
+	<form class= "recipe_new">
 	<div class="recipe_row">
 		<div class="icol1r">
       		<p>Name:</p>
     	</div>
 		<div class="icol2r">
-      		<input type="text" class="name" placeholder="Enter recipe title">
+      		<input type="text" name="recname" class="name" placeholder="Enter recipe title">
     	</div>
     </div>
     <div class="recipe_row">
@@ -40,7 +41,7 @@
       		<p>Cooking Time:</p>
     	</div>
     	<div class="icol2r">
-      		<input type="number" min="1" class="counttime" placeholder="Enter cooking time">
+      		<input type="number" name="rec_time" min="1" class="counttime" placeholder="Enter cooking time">
     	</div>
 	</div>
 	<div class="recipe_row">
@@ -61,21 +62,22 @@
     	
     	<div id="recipe_bar">
     		<input type="button" class="button" value="Discard" id="discard_recipe">
-			<input type="button" class="button" value="Save" id="save_recipe">
+			<input type="submit" class="button" value="Save" id="save_recipe">
     	
     		
 		</div>
 
     </div>
+    </form>
 </template>
 
 <template name="recipe_ingredient">
 	<div class="recipe_row">
 		<div class="icol3">
-			<input type="number" class="count" min="1" value="1">
+			<input type="number" name="rec_ingred_count" class="count" min="1" value="1">
 		</div>
 		<div class="icol1">
-			<input type="text" class="ingredient" placeholder="Enter ingredient">
+			<input type="text" name="rec_ingred" class="ingredient" placeholder="Enter ingredient">
 		</div>
 	</div>
 </template>
@@ -83,7 +85,7 @@
 <template name="recipe_instruction">
 	<div class="recipe_row rows2">
 		<div class="icol1">
-			<textarea rows="3" placeholder="Enter Instruction"></textarea>
+			<textarea rows="3" name="rec_instruc" placeholder="Enter Instruction"></textarea>
 		</div>
 	</div>
 </template>
