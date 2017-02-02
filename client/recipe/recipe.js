@@ -19,6 +19,10 @@ Template.recipes.helpers({
 	check_show_new_recipe() {
 		return Template.instance().show_new_recipe.get();
 	},
+
+	recipe_list() {
+		return Recipes.find({});
+	},
 });
 
 Template.recipes.events({
@@ -34,19 +38,33 @@ Template.recipes.events({
 		
 		event.preventDefault();
 		const target = event.target;
-		const recname = target.recname;
+		const recname = target.recname.value;
 		const ingred = target.rec_ingred;
+		var ingredient_list = [];
+		for ( i = 0; i < ingred.length; i++){
+			ingredient_list[i] = ingred[i].value;
+		}
 		const ingred_count = target.rec_ingred_count;
-		const time = target.rec_time;
+		var ingredient_count = [];
+		for (i = 0; i < ingred_count.length; i++){
+			ingredient_count[i] = parseInt(ingred_count[i].value);
+		}
+		const time = parseInt(target.rec_time.value);
 		const instruc = target.rec_instruc;
-		console.log(instruc);
+		var instructions = [];
+		for (i = 0; i < instruc.length; i++){
+			instructions[i] = instruc[i].value;
+		}
 
-		var newrecipe = new recipe("hbvi", ["dhdf", "dfd"], 180, ["lolwut"]);
+		var newrecipe = new recipe(recname, ingredient_list, ingredient_count, time, instructions);
 
 		Meteor.call('recipes.insert', newrecipe, function(err){
 		if (err){
 			Session.set('errorMessage', err.reason);
+			return;
 		}
+
+		template.show_new_recipe.set(false);
 	});
 	}
 });

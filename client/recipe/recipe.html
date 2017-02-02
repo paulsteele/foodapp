@@ -9,6 +9,9 @@
 		{{#if check_show_new_recipe}}
 			{{> new_recipe}}
 		{{/if}}
+		{{#each recipe_list}}
+      		{{> recipe_entry}}
+    	{{/each}}
 	</div>
 </template>
 
@@ -86,6 +89,14 @@
 	<div class="recipe_row rows2">
 		<div class="icol1">
 			<textarea rows="3" name="rec_instruc" placeholder="Enter Instruction"></textarea>
+		</div>
+	</div>
+</template>
+
+<template name="recipe_entry">
+	<div class="recipe_row">
+		<div class="icol1">
+			<p>{{name}}</p>
 		</div>
 	</div>
 </template>
