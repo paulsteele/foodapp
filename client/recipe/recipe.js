@@ -118,17 +118,20 @@ Template.recipe_entry.helpers({
 		return Template.instance().show_recipe.get();
 	},
 
-	recipe_ingredient_list(id) {
-		var thing = Recipes.findOne({_id: id}, {fields: {'ingredients' : 1, "ingredients_counts" : 1}});
+	recipe_ingredient_list(object) {
 		var ingreds = [];
-		for (i = 0; i < thing.ingredients.length; i++){
+		for (i = 0; i < object.ingredients.length; i++){
 			var tuple = new Object();
-			tuple.ingredient = thing.ingredients[i];
-			tuple.count = thing.ingredients_counts[i];
+			tuple.ingredient = object.ingredients[i];
+			tuple.count = object.ingredients_counts[i];
 			ingreds[i] = tuple;
 		}
 		return ingreds;
 	},
+
+	recipe_instruction_list(object){
+		return object.instructions;
+	}
 });
 
 Template.recipe_entry.events({

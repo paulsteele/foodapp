@@ -109,12 +109,39 @@
 	</div>
 	{{#if get_show}}
 		<div class="recipe_row sub_row">
+			<div class="icol1r">
+				<p>Cooking Time : </p>
+			</div>
+			<div class="icol2r">
+				<p>{{time}}</p>
+			</div>
+		</div>
+		<div class="recipe_row sub_row">
 			<div class="icol1">
 				<p>Ingredients</p>
 			</div>
 		</div>
-		{{#each recipe_ingredient_list _id}}
-			{{this.ingredient}} {{this.count}}
+		{{#each recipe_ingredient_list this}}
+			<div class="recipe_row sub2_row ">
+				<div class="icol2">
+					<p>{{this.count}}</p>
+				</div>
+				<div class="icol1">
+					<p>{{this.ingredient}}</p>
+				</div>
+			</div>
+		{{/each}}
+		<div class="recipe_row sub_row">
+			<div class="icol1">
+				<p>Instructions</p>
+			</div> 
+		</div>
+		{{#each recipe_instruction_list this}}
+			<div class="recipe_row sub2_row">
+				<div class="icol1">
+					<p class="unrestricted">{{this}}</p>
+				</div>
+			</div>
 		{{/each}}
 
 
