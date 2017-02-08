@@ -108,3 +108,36 @@ Template.new_recipe.events({
 		template.instructions_count.set(value);
 	},
 });
+
+Template.recipe_entry.onCreated(function recipe_entry_OnCreated(){
+	this.show_recipe = new ReactiveVar(false);
+});
+
+Template.recipe_entry.helpers({
+	get_show(){
+		return Template.instance().show_recipe.get();
+	},
+
+	recipe_ingredient_list(id) {
+		var thing = Recipes.findOne({_id: id}, {fields: {'ingredients' : 1, "ingredients_counts" : 1}});
+		var ingreds = [];
+		for (i = 0; i < thing.ingredients.length; i++){
+			var tuple = new Object();
+			tuple.ingredient = thing.ingredients[i];
+			tuple.count = thing.ingredients_counts[i];
+			ingreds[i] = tuple;
+		}
+		return ingreds;
+	},
+});
+
+Template.recipe_entry.events({
+	'click .top_row': function(event, template){
+		if (template.show_recipe.get() == true){
+			template.show_recipe.set(false);
+		}
+		else{
+			template.show_recipe.set(true);
+		}
+	}
+})

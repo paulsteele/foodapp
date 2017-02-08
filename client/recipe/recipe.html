@@ -1,14 +1,15 @@
 <template name="recipes">
 	<div id="recipe_view">
 		<h1>Recipes</h1>
-		<div id="recipe_bar">
-			<input type="button" class="button" id="sort_recipes" value="Sort">
-			<input type="button" class="button" id="new_recipe" value="New">
-			
-		</div>
 		{{#if check_show_new_recipe}}
 			{{> new_recipe}}
+		{{else}}
+			<div id="recipe_bar">
+				<input type="button" class="button" id="sort_recipes" value="Sort">
+				<input type="button" class="button" id="new_recipe" value="New">
+			</div>
 		{{/if}}
+
 		{{#each recipe_list}}
       		{{> recipe_entry}}
     	{{/each}}
@@ -94,9 +95,28 @@
 </template>
 
 <template name="recipe_entry">
-	<div class="recipe_row">
-		<div class="icol1">
+	<div class="recipe_row color_row top_row">
+		<div class="icol3">
+			{{#if get_show}}
+				<img class="arrow_down" src = "/images/arrow_down.png">
+			{{else}}
+				<img class="arrow_right" src = "/images/arrow_right.png">
+			{{/if}}
+		</div>
+		<div class="icol1" >
 			<p>{{name}}</p>
 		</div>
 	</div>
+	{{#if get_show}}
+		<div class="recipe_row sub_row">
+			<div class="icol1">
+				<p>Ingredients</p>
+			</div>
+		</div>
+		{{#each recipe_ingredient_list _id}}
+			{{this.ingredient}} {{this.count}}
+		{{/each}}
+
+
+	{{/if}}
 </template>

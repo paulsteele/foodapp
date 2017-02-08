@@ -32,6 +32,13 @@ div.recipe_row {
 	padding-left: 5px;
 }
 
+div.color_row:nth-child(even){
+	background: #70E070;
+}
+div.color_row:nth-child(odd){
+	background: #50C050;
+}
+
 div.rows2 {
 	height: 70px;
 }
@@ -58,4 +65,21 @@ div.recipe_row div.icol3 {
 
 #discard_recipe{
 	width: 85px;
+}
+
+.arrow_down {
+	width: 16px;
+	height: 9px;
+	margin-top: 12px;
+	margin-left: 35px;
+}
+.arrow_right {
+	width: 9px;
+	height: 16px;
+	margin-top: 9px;
+	margin-left: 42px;
+}
+
+.recipe_row.sub_row{
+	padding-left: 20px;
 }
