@@ -51,6 +51,11 @@ div.recipe_row p {
 	margin-top: 7px;
 }
 
+div.recipe_row.unrestricted p{
+	height: auto;
+	word-wrap: break-word;
+}
+
 div.recipe_row div.icol3 {
 	width:55px;
 }
@@ -85,4 +90,11 @@ div.recipe_row div.icol3 {
 }
 .recipe_row.sub2_row{
 	padding-left: 40px;
+}
+.recipe_row.sub2_row.unrestricted{
+	height: auto;
+}
+
+.bold{
+	font-weight: bold;
 }

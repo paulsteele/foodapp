@@ -131,6 +131,10 @@ Template.recipe_entry.helpers({
 
 	recipe_instruction_list(object){
 		return object.instructions;
+	},
+
+	recipe_instruction_number(index){
+		return index + 1;
 	}
 });
 
