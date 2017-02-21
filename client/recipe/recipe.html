@@ -117,12 +117,21 @@
 			</div>
 		</div>
 		<div class="recipe_row sub_row">
+			<div class="icol3">
+				<p>Have</p>
+			</div>
+			<div class="icol2">
+				<p>Need</p>
+			</div>
 			<div class="icol1">
 				<p class="bold">Ingredients</p>
 			</div>
 		</div>
 		{{#each recipe_ingredient_list this}}
 			<div class="recipe_row sub2_row ">
+				<div class="icol3">
+					<p>{{recipe_check_ingredient_count @index this.ingredient}}</p>
+				</div>
 				<div class="icol2">
 					<p>{{this.count}}</p>
 				</div>

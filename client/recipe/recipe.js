@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Recipes } from '../../imports/data/recipes.js';
 import { recipe } from '../../imports/data/recipes.js';
+import { Ingredients } from '../../imports/data/ingredients.js'
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './recipe.html';
@@ -71,7 +72,6 @@ Template.recipes.events({
 
 Template.new_recipe.onCreated(function newrecipe_OnCreated(){
  	this.ingredients_count = new ReactiveVar(1);
- 	this.instructions_count = new ReactiveVar(1);
 });
 
 Template.new_recipe.helpers({
@@ -111,6 +111,7 @@ Template.new_recipe.events({
 
 Template.recipe_entry.onCreated(function recipe_entry_OnCreated(){
 	this.show_recipe = new ReactiveVar(false);
+	this.ingredient_inventory = [];
 });
 
 Template.recipe_entry.helpers({
@@ -135,6 +136,21 @@ Template.recipe_entry.helpers({
 
 	recipe_instruction_number(index){
 		return index + 1;
+	},
+
+	recipe_check_ingredient_count(index, ingredient){
+		var temp = Template.instance();
+		Meteor.call('ingredients.getCount', ingredient.toLowerCase(), function(err, result){
+			if (err){
+				Session.set('errorMessage', err.reason);
+				temp.ingredient_inventory[index].set(result);
+			}
+			else{
+				temp.ingredient_inventory[index].set(result);
+			}
+		});
+
+		return temp.ingredient_inventory[index].get();
 	}
 });
 
@@ -145,6 +161,11 @@ Template.recipe_entry.events({
 		}
 		else{
 			template.show_recipe.set(true);
+			for (i = 0; i < template.data.ingredients.length; i++){
+				if (template.ingredient_inventory[i] == undefined){
+					template.ingredient_inventory[i] = new ReactiveVar(0);
+				}
+			}
 		}
 	}
 })

@@ -47,6 +47,23 @@ if (Meteor.isServer){
 
 		Ingredients.update(ingredientId, { $set: { quantity: count}});
 	},
+
+	'ingredients.getCount'(ingredient){
+		check(ingredient, String);
+		
+		if (!this.userId){
+			throw new Meteor.Error('not-authorized');
+		}
+
+		var candidate = Ingredients.findOne({text: ingredient, owner: this.userId});
+		if (candidate != undefined){
+			return candidate.quantity;
+		}
+		else{
+			return 0;
+		}
+
+	}
 });
 	
 }
