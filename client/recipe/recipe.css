@@ -72,6 +72,10 @@ div.recipe_row div.icol3 {
 	width: 85px;
 }
 
+#delete_recipe{
+	width: 85px;
+}
+
 .arrow_down {
 	width: 16px;
 	height: 9px;

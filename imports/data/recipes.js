@@ -55,7 +55,13 @@ if (Meteor.isServer){
 			});
 
 			return;
-		}
+		},
+
+		'recipes.remove'(recipeId){
+		check(recipeId, String);
+
+		Recipes.remove(recipeId);
+	},
 	});
 
 }

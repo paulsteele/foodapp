@@ -72,6 +72,7 @@ Template.recipes.events({
 
 Template.new_recipe.onCreated(function newrecipe_OnCreated(){
  	this.ingredients_count = new ReactiveVar(1);
+ 	this.instructions_count = new ReactiveVar(1);
 });
 
 Template.new_recipe.helpers({
@@ -111,12 +112,17 @@ Template.new_recipe.events({
 
 Template.recipe_entry.onCreated(function recipe_entry_OnCreated(){
 	this.show_recipe = new ReactiveVar(false);
+	this.show_delete_bar = new ReactiveVar(false);
 	this.ingredient_inventory = [];
 });
 
 Template.recipe_entry.helpers({
 	get_show(){
 		return Template.instance().show_recipe.get();
+	},
+
+	get_show_delete(){
+		return Template.instance().show_delete_bar.get();
 	},
 
 	recipe_ingredient_list(object) {
@@ -173,5 +179,21 @@ Template.recipe_entry.events({
 				}
 			}
 		}
+	},
+
+	'click #delete_recipe': function(event, template){
+		template.show_delete_bar.set(true);
+	},
+
+	'click .delete_deny' : function(event, template){
+		template.show_delete_bar.set(false);
+	},
+
+	'click .delete_confirm' : function(event, template){
+		Meteor.call('recipes.remove', this._id, function(err){
+			if (err){
+				Session.set('errorMessage', err.reason);
+			}
+		});
 	}
 })

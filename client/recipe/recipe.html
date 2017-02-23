@@ -96,61 +96,76 @@
 
 <template name="recipe_entry">
 	<div class = "color_row">
-	<div class="recipe_row top_row">
-		<div class="icol3">
-			{{#if get_show}}
-				<img class="arrow_down" src = "/images/arrow_down.png">
-			{{else}}
-				<img class="arrow_right" src = "/images/arrow_right.png">
-			{{/if}}
-		</div>
-		<div class="icol1" >
-			<p>{{name}}</p>
-		</div>
-	</div>
-	{{#if get_show}}
-		<div class="recipe_row sub_row">
-			<div class="icol1r">
-				<p class="bold" >Cooking Time : </p>
+		<div class="recipe_row top_row">
+			<div class="icol3">
+				{{#if get_show}}
+					<img class="arrow_down" src = "/images/arrow_down.png">
+				{{else}}
+					<img class="arrow_right" src = "/images/arrow_right.png">
+				{{/if}}
 			</div>
-			<div class="icol2r">
-				<p>{{time}}</p>
+			<div class="icol1" >
+				<p>{{name}}</p>
 			</div>
 		</div>
-		<div class="recipe_row sub_row">
-			<div class="icol1">
-				<p class="bold">Ingredients</p>
-			</div>
-		</div>
-		{{#each recipe_ingredient_list this}}
-			<div class="recipe_row sub2_row ">
-				<div class="icol2">
-					{{#if recipe_check_have_ingredient @index this.ingredient this.count}}
-						 <p>{{this.count}}<img class="check_mark" src="/images/check.png"></p>
-					{{else}}
-						 <p>{{this.count}}<img class="x_mark" src="/images/x.png"></p>
-					{{/if}}
-				</div>
-				<div class="icol1">
-					<p>{{this.ingredient}}</p>
-				</div>
-			</div>
-		{{/each}}
-		<div class="recipe_row sub_row">
-			<div class="icol1">
-				<p class="bold">Instructions</p>
-			</div> 
-		</div>
-		{{#each recipe_instruction_list this}}
-			<div class="recipe_row sub2_row unrestricted">
+		{{#if get_show}}
+			<div class="recipe_row sub_row">
 				<div class="icol1r">
-					<p class="bold">{{recipe_instruction_number @index}}) </p>
+					<p class="bold" >Cooking Time : </p>
 				</div>
 				<div class="icol2r">
-					<p class="unrestricted" >{{this}}</p>
+					<p>{{time}}</p>
 				</div>
 			</div>
-		{{/each}}
-	{{/if}}
+			<div class="recipe_row sub_row">
+				<div class="icol1">
+					<p class="bold">Ingredients</p>
+				</div>
+			</div>
+			{{#each recipe_ingredient_list this}}
+				<div class="recipe_row sub2_row ">
+					<div class="icol2">
+						{{#if recipe_check_have_ingredient @index this.ingredient this.count}}
+							 <p>{{this.count}}<img class="check_mark" src="/images/check.png"></p>
+						{{else}}
+							 <p>{{this.count}}<img class="x_mark" src="/images/x.png"></p>
+						{{/if}}
+					</div>
+					<div class="icol1">
+						<p>{{this.ingredient}}</p>
+					</div>
+				</div>
+			{{/each}}
+			<div class="recipe_row sub_row">
+				<div class="icol1">
+					<p class="bold">Instructions</p>
+				</div> 
+			</div>
+			{{#each recipe_instruction_list this}}
+				<div class="recipe_row sub2_row unrestricted">
+					<div class="icol1r">
+						<p class="bold">{{recipe_instruction_number @index}}) </p>
+					</div>
+					<div class="icol2r">
+						<p class="unrestricted" >{{this}}</p>
+					</div>
+				</div>
+			{{/each}}
+			<div class="recipe_row">
+				<div id="recipe_bar">
+					<input type="button" class="button" id="delete_recipe" value="Remove">
+				</div>
+			</div>
+			{{#if get_show_delete}}
+				<div class="recipe_row">
+					<div class="icol25">
+	      				<input type="button" class="delete_deny" value="Cancel Remove">
+	    			</div>
+	    			<div class="icol15">
+	      				<input type="button" class="delete_confirm" value="Confirm remove">
+	    			</div>
+    			</div>
+			{{/if}}
+		{{/if}}
 	</div>
 </template>
