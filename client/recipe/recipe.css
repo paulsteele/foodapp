@@ -85,6 +85,14 @@ div.recipe_row div.icol3 {
 	margin-left: 42px;
 }
 
+.check_mark{
+	height: 20px
+}
+
+.x_mark{
+	height: 20px;
+}
+
 .recipe_row.sub_row{
 	padding-left: 20px;
 }
