@@ -166,7 +166,7 @@ Template.recipe_entry.helpers({
 	}
 });
 
-Template.recipe_entry.events({
+Template.recipe_entry.events( {
 	'click .top_row': function(event, template){
 		if (template.show_recipe.get() == true){
 			template.show_recipe.set(false);
