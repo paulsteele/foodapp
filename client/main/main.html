@@ -4,6 +4,9 @@
 
 <body>
   {{> header}}
+  {{#if cookingRecipe}}
+    {{> cook}}
+  {{/if}}
   {{#if userID}}
     {{> ingredients}}
     {{> recipes}}

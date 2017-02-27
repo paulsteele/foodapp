@@ -23,8 +23,13 @@ Template.registerHelper('userID', function() {
 		return Meteor.user();
 });
 
+Template.registerHelper('cookingRecipe', function(){
+	return Session.get('cookingRecipe');
+});
+
 //stores a variable that can be used to determine context of how the page should look
 Meteor.startup(function() {
 	Session.set('pageContext', null);
 	Session.set('errorMessage', null);
+	Session.set('cookingRecipe', null);
 });

@@ -7,13 +7,9 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import './recipe.html';
 import '../../imports/functions/times.js'
 
-Template.recipes.onCreated(function ingreidentsOnCreated(){
+Template.recipes.onCreated(function recipesOnCreated(){
 	Meteor.subscribe('recipes');
-});
-
-Template.recipes.onCreated(function ingredient_entryOnCreated(){
 	this.show_new_recipe = new ReactiveVar(false);
-	
 });
 
 Template.recipes.helpers({
@@ -195,5 +191,9 @@ Template.recipe_entry.events({
 				Session.set('errorMessage', err.reason);
 			}
 		});
+	},
+
+	'click #cook_recipe' : function(event, template){
+		Session.set('cookingRecipe', this.name);
 	}
 })
