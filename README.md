@@ -3,6 +3,7 @@ Back-end for food inventory / suggestions.
 
 ##Dependencies
 * Meteor.js
+	* https://www.meteor.com/tutorials
 
 ## Installation
 1. https://www.meteor.com/install
