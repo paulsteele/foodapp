@@ -120,7 +120,50 @@ Template.recipe_entry.helpers({
 	get_show_delete(){
 		return Template.instance().show_delete_bar.get();
 	},
+});
 
+Template.recipe_entry.events({
+	'click .top_row': function(event, template){
+		if (template.show_recipe.get() == true){
+			template.show_recipe.set(false);
+		}
+		else{
+			template.show_recipe.set(true);
+		}
+	},
+
+	'click #delete_recipe': function(event, template){
+		template.show_delete_bar.set(true);
+	},
+
+	'click .delete_deny' : function(event, template){
+		template.show_delete_bar.set(false);
+	},
+
+	'click .delete_confirm' : function(event, template){
+		Meteor.call('recipes.remove', this._id, function(err){
+			if (err){
+				Session.set('errorMessage', err.reason);
+			}
+		});
+	},
+
+	'click #cook_recipe' : function(event, template){
+		Session.set('cookingRecipe', this.name);
+	}
+});
+
+Template.recipe_inner.onCreated(function recipe_inner_OnCreated(){
+	this.ingredient_inventory = [];
+	var template = this;
+	for (i = 0; i < template.data.ingredients.length; i++){
+		if (template.ingredient_inventory[i] == undefined){
+			template.ingredient_inventory[i] = new ReactiveVar(false);
+		}
+	}
+});
+
+Template.recipe_inner.helpers({
 	recipe_ingredient_list(object) {
 		var ingreds = [];
 		for (i = 0; i < object.ingredients.length; i++){
@@ -161,39 +204,3 @@ Template.recipe_entry.helpers({
 		return temp.ingredient_inventory[index].get();
 	}
 });
-
-Template.recipe_entry.events({
-	'click .top_row': function(event, template){
-		if (template.show_recipe.get() == true){
-			template.show_recipe.set(false);
-		}
-		else{
-			template.show_recipe.set(true);
-			for (i = 0; i < template.data.ingredients.length; i++){
-				if (template.ingredient_inventory[i] == undefined){
-					template.ingredient_inventory[i] = new ReactiveVar(false);
-				}
-			}
-		}
-	},
-
-	'click #delete_recipe': function(event, template){
-		template.show_delete_bar.set(true);
-	},
-
-	'click .delete_deny' : function(event, template){
-		template.show_delete_bar.set(false);
-	},
-
-	'click .delete_confirm' : function(event, template){
-		Meteor.call('recipes.remove', this._id, function(err){
-			if (err){
-				Session.set('errorMessage', err.reason);
-			}
-		});
-	},
-
-	'click #cook_recipe' : function(event, template){
-		Session.set('cookingRecipe', this.name);
-	}
-})
