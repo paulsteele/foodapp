@@ -149,7 +149,7 @@ Template.recipe_entry.events({
 	},
 
 	'click #cook_recipe' : function(event, template){
-		Session.set('cookingRecipe', this.name);
+		Session.set('cookingRecipe', this);
 	}
 });
 

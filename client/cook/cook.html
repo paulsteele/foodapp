@@ -1,6 +1,6 @@
 <template name="cook">
 	<div id="cookingView">
-		<h1>Cooking {{cookingRecipe}} </h1>
+		<h1>Cooking {{cookingRecipe.name}} </h1>
 	</div>
-	{{>recipe_entry}}
+	{{>recipe_inner cookingRecipe}}
 </template>
