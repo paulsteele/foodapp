@@ -50,7 +50,7 @@ if (Meteor.isServer){
 
 	'ingredients.getCount'(ingredient){
 		check(ingredient, String);
-		
+		ingredient = ingredient.toLowerCase();
 		if (!this.userId){
 			throw new Meteor.Error('not-authorized');
 		}
@@ -60,7 +60,7 @@ if (Meteor.isServer){
 			return candidate.quantity;
 		}
 		else{
-			return 0;
+			return -1;
 		}
 
 	}

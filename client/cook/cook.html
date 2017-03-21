@@ -1,8 +1,20 @@
 <template name="cook">
 	<div id="cookingView">
 		<h1>Cooking {{cookingRecipe.name}} </h1>
-	</div>
-	<div class = "color_row">
 		{{>recipe_inner cookingRecipe}}
+		<form id="cook_form">
+		<div class="recipe_row">
+			<div id="recipe_bar">
+				<input type="checkbox" class="checkbox" id="adjust_ingredients" name="checkbox" checked>
+				<p class=checkbox_text>Auto adjust inventory</p>
+			</div>
+		</div>
+		<div class="recipe_row">
+			<div id="recipe_bar">
+				<input type="button" class="button" id="cook_cancel" value="Cancel">
+				<input type="submit" class="button" id="cook_confirm" value="Completed">
+			</div>
+		</div>
+		</form>
 	</div>
 </template>

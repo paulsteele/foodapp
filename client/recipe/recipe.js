@@ -32,7 +32,6 @@ Template.recipes.events({
 	},
 
 	'submit .recipe_new' : function(event, template){
-		
 		event.preventDefault();
 		const target = event.target;
 		const recname = target.recname.value;
