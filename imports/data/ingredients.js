@@ -48,6 +48,18 @@ if (Meteor.isServer){
 		Ingredients.update(ingredientId, { $set: { quantity: count}});
 	},
 
+	'ingredients.setCountByName'(ingredientName, newcount){
+		check(ingredientName, String);
+		check(newcount, Number);
+		ingredientName = ingredientName.toLowerCase();
+
+		if (!this.userId){
+			throw new Meteor.Error('not-authorized');
+		}
+
+		Ingredients.update({text: ingredientName, owner:this.userId}, { $set: {quantity: newcount}});
+	},
+
 	'ingredients.getCount'(ingredient){
 		check(ingredient, String);
 		ingredient = ingredient.toLowerCase();
