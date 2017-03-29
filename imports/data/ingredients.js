@@ -58,23 +58,6 @@ if (Meteor.isServer){
 		}
 
 		Ingredients.update({text: ingredientName, owner:this.userId}, { $set: {quantity: newcount}});
-	},
-
-	'ingredients.getCount'(ingredient){
-		check(ingredient, String);
-		ingredient = ingredient.toLowerCase();
-		if (!this.userId){
-			throw new Meteor.Error('not-authorized');
-		}
-
-		var candidate = Ingredients.findOne({text: ingredient, owner: this.userId});
-		if (candidate != undefined){
-			return candidate.quantity;
-		}
-		else{
-			return -1;
-		}
-
 	}
 });
 	

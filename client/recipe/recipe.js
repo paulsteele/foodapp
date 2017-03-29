@@ -153,13 +153,7 @@ Template.recipe_entry.events({
 });
 
 Template.recipe_inner.onCreated(function recipe_inner_OnCreated(){
-	this.ingredient_inventory = [];
-	var template = this;
-	for (i = 0; i < template.data.ingredients.length; i++){
-		if (template.ingredient_inventory[i] == undefined){
-			template.ingredient_inventory[i] = new ReactiveVar(false);
-		}
-	}
+
 });
 
 Template.recipe_inner.helpers({
@@ -184,22 +178,19 @@ Template.recipe_inner.helpers({
 
 	recipe_check_have_ingredient(index, ingredient, desired){
 		var temp = Template.instance();
-		Meteor.call('ingredients.getCount', ingredient.toLowerCase(), function(err, result){
-			if (err){
-				Session.set('errorMessage', err.reason);
-				temp.ingredient_inventory[index].set(false);
+		//get the ingredient
+		var ingred = Ingredients.findOne({text: ingredient.toLowerCase(), owner: Meteor.userId()});
+
+		if (ingred){
+			if (ingred.quantity >= desired){
+				return true;
 			}
 			else{
-				if (result >= desired){
-					temp.ingredient_inventory[index].set(true);
-				}
-				else{
-					temp.ingredient_inventory[index].set(false);
-				}
-				
+				return false;
 			}
-		});
-
-		return temp.ingredient_inventory[index].get();
+		}
+		else{
+			return false;
+		}
 	}
 });

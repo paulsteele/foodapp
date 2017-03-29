@@ -28,29 +28,23 @@ Template.cook.events({
 			//remove ingredients from inventory
 			var recipe = Session.get('cookingRecipe');
 			for (i = 0; i < recipe.ingredients.length; i++){
-				const ingredient_name = recipe.ingredients[i];
-				const ingredient_count = recipe.ingredients_counts[i];
-				Meteor.call('ingredients.getCount', recipe.ingredients[i], function(err, result){
-					if (err){
-						Session.set('errorMessage', err.reason);
-						return;
-					}
-					else{
-						if (result != -1){
-							var new_count = result - ingredient_count;
-							if (new_count < 0){
-								new_count = 0;
-							}
 
-							Meteor.call('ingredients.setCountByName', ingredient_name, new_count, function(err, result){
-								if (err){
-									Session.set('errorMessage', err.reason);
-									return;
-								}
-							});
-						}
+				var ingred = Ingredients.findOne({text: recipe.ingredients[i].toLowerCase(), owner: Meteor.userId()});
+				if (ingred){
+					var quantity = ingred.quantity - recipe.ingredients_counts[i];
+					if (quantity < 0){
+						quantity = 0;
 					}
-				});
+
+					Meteor.call('ingredients.setCountByName', recipe.ingredients[i], quantity, function(err, result){
+						if (err){
+							Session.set('errorMessage', err.reason);
+							return;
+						}
+					});
+				}
+
+				
 			}
 		}
 
