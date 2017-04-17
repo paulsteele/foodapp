@@ -1,6 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import {check} from 'meteor/check';
+import { Ingredients } from './ingredients.js'
 
 export const Recipes = new Mongo.Collection('recipes');
 
@@ -18,6 +19,46 @@ if (Meteor.isServer){
 		}, {sort: {text: 1}});
 	});
 
+	Meteor.publish('cookableRecipes', function cookableRecipesPublication() {
+		//obtain all legal recipes that this user can have
+		subset = Recipes.find({
+			owner: this.userId,
+		}, {sort: {text: 1}});
+
+		//Don't want to store constantly
+		validRecipes = new Mongo.Collection(null);
+
+		subset.forEach((recipe) => {
+			//check to see if recipe is valid
+			//check every ingredient
+			working = true;
+			for (i = 0; i < recipe.ingredients.length; i++){
+				//see if matching ingredient 
+				var ingred = Ingredients.findOne({text: recipe.ingredients[i].toLowerCase(), owner: recipe.owner});
+				//if actually valid
+				if (ingred){
+					if ( ingred.quantity - recipe.ingredients_counts[i] < 0){
+						working = false;
+						break;
+					}
+				}
+				else{
+					working = false;
+				}
+			}
+
+			//working will only be true if every ingredient passed
+			if (working){
+				validRecipes.insert(recipe);
+			}
+		});
+
+		return validRecipes.Cursor;
+
+	});
+
+
+	
 
 	Meteor.methods({
 		'recipes.insert'(recipe){

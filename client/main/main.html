@@ -6,6 +6,8 @@
   {{> header}}
   {{#if cookingRecipe}}
     {{> cook}}
+  {{else}}
+    {{> suggest}}
   {{/if}}
   {{#if userID}}
     {{> ingredients}}
