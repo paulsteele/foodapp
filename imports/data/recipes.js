@@ -21,7 +21,55 @@ if (Meteor.isServer){
 
 	Meteor.publish('cookableRecipes', function cookableRecipesPublication() {
 		//obtain all legal recipes that this user can have
-		subset = Recipes.find({
+		
+		var transform = function(recipe){
+			//check to see if recipe is valid
+			//check every ingredient
+			working = true;
+			for (i = 0; i < recipe.ingredients.length; i++){
+				//see if matching ingredient 
+				var ingred = Ingredients.findOne({text: recipe.ingredients[i].toLowerCase(), owner: recipe.owner});
+				//if actually valid
+				if (ingred){
+					if ( ingred.quantity - recipe.ingredients_counts[i] < 0){
+						working = false;
+						break;
+					}
+				}
+				else{
+					working = false;
+				}
+			}
+
+			//working will only be true if every ingredient passed
+			if (working){
+				recipe.cookable = true
+			}
+			else{
+				recipe.cookable = false;
+			}
+		}
+
+		var self = this;
+
+		var observer = Recipes.find().observe({
+     		added: function (document) {
+      			self.added('recipes', document._id, transform(document));
+    		},
+   			changed: function (newDocument, oldDocument) {
+    			self.changed('recipes', newDocument._id, transform(newDocument));
+    		},
+    		removed: function (oldDocument) {
+    			self.removed('recipes', oldDocument._id);
+    		}
+  		});
+		self.onStop(function () {
+			observer.stop();
+		});
+		console.log(self);
+  		return self.ready();
+
+		/*subset = Recipes.find({
 			owner: this.userId,
 		}, {sort: {text: 1}});
 
@@ -49,12 +97,14 @@ if (Meteor.isServer){
 
 			//working will only be true if every ingredient passed
 			if (working){
+				subset.
 				validRecipes.insert(recipe);
 			}
 		});
+		console.log(validRecipes.find({}));
 
-		return validRecipes.Cursor;
-
+		return validRecipes.find({});
+		*/
 	});
 
 

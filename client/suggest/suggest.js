@@ -8,6 +8,7 @@ Template.suggest.onCreated(function bodyOnCreated(){
 
 Template.suggest.helpers({
 	cookable_recipes_list() {
+		console.log(CookableRecipes);
 		return CookableRecipes.find({});
 	},
 });
