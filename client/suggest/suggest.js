@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 
-var CookableRecipes = new Meteor.Collection("cookableRecipes");
+import CookableRecipes from '../../imports/data/recipes.js';
 
 Template.suggest.onCreated(function bodyOnCreated(){
 	Meteor.subscribe('cookableRecipes');
@@ -8,7 +8,7 @@ Template.suggest.onCreated(function bodyOnCreated(){
 
 Template.suggest.helpers({
 	cookable_recipes_list() {
-		console.log(CookableRecipes);
-		return CookableRecipes.find({});
+		//console.log(CookableRecipes.Recipes);
+		return CookableRecipes.Recipes.find({});
 	},
 });

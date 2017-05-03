@@ -18,6 +18,7 @@ Template.recipes.helpers({
 	},
 
 	recipe_list() {
+		console.log(Recipes);
 		return Recipes.find({});
 	},
 });
