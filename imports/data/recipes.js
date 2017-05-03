@@ -73,9 +73,6 @@ if (Meteor.isServer){
 		self.ready();
 	});
 
-
-	
-
 	Meteor.methods({
 		'recipes.insert'(recipe){
 			
