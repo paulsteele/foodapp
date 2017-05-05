@@ -18,7 +18,6 @@ Template.recipes.helpers({
 	},
 
 	recipe_list() {
-		console.log(Recipes);
 		return Recipes.find({});
 	},
 });
@@ -56,13 +55,13 @@ Template.recipes.events({
 		var newrecipe = new recipe(recname, ingredient_list, ingredient_count, time, instructions);
 
 		Meteor.call('recipes.insert', newrecipe, function(err){
-		if (err){
-			Session.set('errorMessage', err.reason);
-			return;
-		}
+			if (err){
+				Session.set('errorMessage', err.reason);
+				return;
+			}
 
-		template.show_new_recipe.set(false);
-	});
+			template.show_new_recipe.set(false);
+		});
 	}
 });
 

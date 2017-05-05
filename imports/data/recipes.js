@@ -4,7 +4,6 @@ import {check} from 'meteor/check';
 import { Ingredients } from './ingredients.js'
 
 export const Recipes = new Mongo.Collection('recipes');
-export const CookableRecipes = new Mongo.Collection('cookableRecipes');
 
 export function recipe(name, ingredients, ingredients_counts, time, instructions){
 	this.name = name;
@@ -20,38 +19,10 @@ if (Meteor.isServer){
 		}, {sort: {text: 1}});
 	});
 
-	Meteor.publish('cookableRecipes', function cookableRecipesPublication() {
+	/*Meteor.publish('cookableRecipes', function cookableRecipesPublication() {
 		//obtain all legal recipes that this user can have
 		
-		var transform = function(recipe){
-			//check to see if recipe is valid
-			//check every ingredient
-			working = true;
-			for (i = 0; i < recipe.ingredients.length; i++){
-				//see if matching ingredient 
-				var ingred = Ingredients.findOne({text: recipe.ingredients[i].toLowerCase(), owner: recipe.owner});
-				//if actually valid
-				if (ingred){
-					if ( ingred.quantity - recipe.ingredients_counts[i] < 0){
-						working = false;
-						break;
-					}
-				}
-				else{
-					working = false;
-				}
-			}
-
-			//working will only be true if every ingredient passed
-			if (working){
-				recipe.cookable = true
-			}
-			else{
-				recipe.cookable = false;
-			}
-
-			return recipe;
-		}
+		
 
 		var self = this;
 
@@ -71,7 +42,7 @@ if (Meteor.isServer){
 		});
 		
 		self.ready();
-	});
+	});*/
 
 	Meteor.methods({
 		'recipes.insert'(recipe){
@@ -112,10 +83,56 @@ if (Meteor.isServer){
 		},
 
 		'recipes.remove'(recipeId){
-		check(recipeId, String);
+			check(recipeId, String);
 
-		Recipes.remove(recipeId);
-	},
+			Recipes.remove(recipeId);
+		},
+
+		'recipes.findCookable'() {
+
+			//go through every recipe that a user has and return list of valid ones
+
+			subset = Recipes.find({
+				owner: this.userId,
+			}, {sort: {text: 1}});
+
+			//what stores the cookables
+			var cookables = [];
+			//what stores the size;
+			var size = 0;
+
+			subset.forEach((recipe) => {
+				//check to see if recipe is valid
+				//check every ingredient
+				working = true;
+				for (i = 0; i < recipe.ingredients.length; i++){
+					//see if matching ingredient 
+					var ingred = Ingredients.findOne({text: recipe.ingredients[i].toLowerCase(), owner: recipe.owner});
+					//if actually valid
+					if (ingred){
+						if ( ingred.quantity - recipe.ingredients_counts[i] < 0){
+							working = false;
+							break;
+						}
+					}
+					else{
+						working = false;
+					}
+				}
+
+				//working will only be true if every ingredient passed
+				if (working){
+					//add it
+					cookables[size] = recipe._id;
+					size++;
+
+				}
+				else{
+					//don't add it
+				}
+			});
+			return cookables;
+		}
 	});
 
 }
