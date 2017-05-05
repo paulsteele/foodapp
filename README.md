@@ -1,7 +1,7 @@
 # foodapp
 Back-end for food inventory / suggestions.
 
-##Dependencies
+## Dependencies
 * Meteor.js
 	* https://www.meteor.com/tutorials
 
