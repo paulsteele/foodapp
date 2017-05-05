@@ -19,31 +19,6 @@ if (Meteor.isServer){
 		}, {sort: {text: 1}});
 	});
 
-	/*Meteor.publish('cookableRecipes', function cookableRecipesPublication() {
-		//obtain all legal recipes that this user can have
-		
-		
-
-		var self = this;
-
-		var observer = Recipes.find({owner: this.userId,}, {sort: {text: 1}}).observe({
-     		added: function (document) {
-      			self.added('recipes', document._id, transform(document));
-    		},
-   			changed: function (newDocument, oldDocument) {
-    			self.changed('recipes', newDocument._id, transform(newDocument));
-    		},
-    		removed: function (oldDocument) {
-    			self.removed('recipes', oldDocument._id);
-    		}
-  		});
-		self.onStop(function () {
-			observer.stop();
-		});
-		
-		self.ready();
-	});*/
-
 	Meteor.methods({
 		'recipes.insert'(recipe){
 			
