@@ -4,12 +4,12 @@
 
 <body>
   {{> header}}
-  {{#if cookingRecipe}}
-    {{> cook}}
-  {{else}}
-    {{> suggest}}
-  {{/if}}
   {{#if userID}}
+    {{#if cookingRecipe}}
+      {{> cook}}
+    {{else}}
+      {{> suggest}}
+    {{/if}}
     {{> ingredients}}
     {{> recipes}}
   {{else}}

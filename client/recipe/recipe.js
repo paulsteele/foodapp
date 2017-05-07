@@ -36,21 +36,37 @@ Template.recipes.events({
 		const target = event.target;
 		const recname = target.recname.value;
 		const ingred = target.rec_ingred;
-		var ingredient_list = [];
-		for ( i = 0; i < ingred.length; i++){
-			ingredient_list[i] = ingred[i].value;
-		}
 		const ingred_count = target.rec_ingred_count;
+		console.log(ingred);
+		var ingredient_list = [];
 		var ingredient_count = [];
-		for (i = 0; i < ingred_count.length; i++){
-			ingredient_count[i] = parseInt(ingred_count[i].value);
+		//means size of 1
+		if (ingred.length == undefined){
+			ingredient_list[0] = ingred.value;
+			ingredient_count[0] = parseInt(ingred_count.value);
 		}
+		else{
+			for ( i = 0; i < ingred.length; i++){
+				ingredient_list[i] = ingred[i].value;
+			}
+			for (i = 0; i < ingred_count.length; i++){
+				ingredient_count[i] = parseInt(ingred_count[i].value);
+			}
+		}
+		
 		const time = parseInt(target.rec_time.value);
 		const instruc = target.rec_instruc;
 		var instructions = [];
-		for (i = 0; i < instruc.length; i++){
-			instructions[i] = instruc[i].value;
+
+		if (instruc.length == undefined){
+			instructions[0] = instruc.value;
 		}
+		else{
+			for (i = 0; i < instruc.length; i++){
+				instructions[i] = instruc[i].value;
+			}
+		}
+		
 
 		var newrecipe = new recipe(recname, ingredient_list, ingredient_count, time, instructions);
 
