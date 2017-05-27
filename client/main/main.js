@@ -5,6 +5,12 @@ import { Session } from 'meteor/session';
 
 import './main.html';
 
+//Iron router configuration
+Router.configure({
+	noRoutesTemplate: 'noRoutesTemplate'
+});
+
+
 Template.body.helpers({
 	'contextCheck': function(value){
 		if (Session.get('pageContext') == value){
