@@ -3,7 +3,6 @@ pipeline {
   options {
     skipDefaultCheckout()
   }
-
   stages {
     stage('Checkout') {
       steps {
@@ -12,22 +11,30 @@ pipeline {
     }
     stage('Install Dependencies') {
       steps {
-        sh 'npm install'
+        dir('client') {
+          sh 'npm install'
+        }
       }
     }
     stage('Lint') {
       steps {
-        sh 'npm run lint'
+        dir('client') {
+          sh 'npm run lint'
+        }
       }
     }
     stage('Test') {
       steps {
-        sh 'npm test'
+        dir('client') {
+          sh 'npm test'
+        }
       }
     }
     stage('Build') {
       steps {
-        sh 'npm run build'
+        dir('client') {
+          sh 'npm run build'
+        }
       }
     }
     stage('Deploy') {
@@ -35,7 +42,9 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh "cp -r dist /foodapp/client"
+        dir('client') {
+          sh "cp -r dist /foodapp/client"
+        }
       }
     }
   }
