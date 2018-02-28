@@ -43,7 +43,7 @@ pipeline {
       }
       steps {
         dir('client') {
-          sh "cp -r dist /foodapp/client"
+          sh "cp -r dist /food-app/client"
         }
       }
     }
