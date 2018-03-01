@@ -12,7 +12,7 @@ pipeline {
     stage('Build') {
       steps {
         dir('server') {
-          sh 'docker built -t food-app-server'
+          sh 'docker built . -t food-app-server'
         }
       }
     }
