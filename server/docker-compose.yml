@@ -1,0 +1,7 @@
+version: "3"
+services:
+  food-app-server:
+    image: "food-app-server:latest"
+    restart: always
+    ports:
+      - "4000:4000"
