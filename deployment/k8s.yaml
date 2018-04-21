@@ -6,14 +6,14 @@ metadata:
   name: food-app
 spec:
   rules:
-    - host: pantry-api.paul-steele.com
+    - host: pantry.paul-steele.com
       http:
         paths:
           - backend:
               serviceName: food-app
               servicePort: 80
             path: /
-    - host: pantry.paul-steele.com
+    - host: pantry-api.paul-steele.com
       http:
         paths:
           - backend:
