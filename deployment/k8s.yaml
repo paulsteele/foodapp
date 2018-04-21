@@ -60,10 +60,12 @@ spec:
         - name: food-app-server
           image: registry.paul-steele.com/food-app-server:latest
           ports:
-            - containerPort: 4000
+            - name: food-app-server
+              containerPort: 4000
         - name: food-app-client
           image: registry.paul-steele.com/food-app-client:latest
           ports:
-            - containerPort: 80
+            - name: food-app-client
+              containerPort: 80
       imagePullSecrets:
         - name: registry.paul-steele.com
