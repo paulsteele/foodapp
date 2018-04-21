@@ -15,7 +15,7 @@ spec:
             path: /
     - host: pantry.paul-steele.com
       http:
-        path:
+        paths:
           - backend:
               serviceName: food-app
               servicePort: 4000
