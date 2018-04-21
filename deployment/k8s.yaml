@@ -33,10 +33,12 @@ spec:
   selector:
     app: food-app
   ports:
-    - protocol: TCP
+    - name: food-app-client
+      protocol: TCP
       port: 80
       targetPort: 80
-    - protocol: TCP
+    - name: food-app-server
+      protocol: TCP
       port: 4000
       targetPort: 4000
 ---
