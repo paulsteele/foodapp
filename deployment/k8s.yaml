@@ -4,6 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   name: food-app
+  namespace: deployments
 spec:
   rules:
     - host: pantry.paul-steele.com
@@ -29,6 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: food-app
+  namespace: deployments
 spec:
   selector:
     app: food-app
@@ -46,6 +48,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: food-app
+  namespace: deployments
   labels:
     app: food-app
 spec:
